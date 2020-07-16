@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <link href="style2.css" rel="stylesheet">
+        <link class="custom" href="../../src/lab/images/favicon.png" rel="shortcut icon"/>
+       
+
+    </head>
+    <body>
+        <div class="container content">
+            
+                    <div>
+                    <p>Experiment</p>
+                    <select id="select-lang" onchange=" reform(),Language();">
+                            <option value="def" >---Select Language---</option>
+                            <option value="eng" >English</option>
+                            <option value="hindi">Hindi</option>
+                    </select>
+                    </div>
+                   
+
+                    <div class="general-text">
+                        <p id="sentence-intro"></p>
+                        <span id="button-select-intro" style="margin-left:17%;"></span>   
+                    </div>
+                    <div id="jumbled-words">
+
+                    </div>
+                    <p id='msg'></p>
+                    <p id="sel"></p>
+                    <div id="reformed"></div>
+                    <div id="check-correctness"></div>
+                    <p id="correct"></p>
+                    <p id="wrong"></p>
+                    <div id="ans">
+                    </div>
+
+                </div>
+            </div>
+            
+        </div>
+        <script src="script2.js"></script>
+    </body>
+</html>
