@@ -1,3 +1,12 @@
+var lan;
+var Buttons;
+var wcount=0;
+var c=0;
+var engarr=[];
+var hinarr=[];
+var rhindi;
+var renglish2;
+var randomHindi;
 var eng1 = ['John ate an apple before afternoon',
                             'before afternoon John ate an apple',
                             'John before afternoon ate an apple'
@@ -131,3 +140,39 @@ var eng1 = ['John ate an apple before afternoon',
                     '‌है‌ ‌वहाँ‌ ‌एक‌ ‌बड़ी‌ ‌सी‌ ‌किताब‌',
                     'है‌ ‌वहाँ‌ ‌बड़ी‌ ‌सी‌ ‌एक‌ ‌किताब‌'
         ]
+function Language()
+{
+
+     lan = document.getElementById("select-lang").value;
+
+    if(lan==='eng')
+    {
+           
+           messs();
+            
+            
+    }
+    else if(lan==='hindi')
+    {   
+
+
+           messs();
+          
+                
+        }
+    else
+        {           
+            
+             alert("Please Select A Language.");
+
+        }   
+}
+
+
+function messs(){
+            set('sentence-intro','Form a sentence (Declarative or Interrogative or any other type) from the given words');
+            document.getElementById("button-select-intro").innerHTML="(select the buttons in proper order)";
+            document.getElementById("button-select-intro").setAttribute("style","color:blue;");
+            document.getElementById("sentence-intro").setAttribute("style","color:blue;font-size:100%");
+            
+    }
