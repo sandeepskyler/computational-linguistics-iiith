@@ -147,32 +147,93 @@ function Language()
 
     if(lan==='eng')
     {
-           
+            //emptying the fields while switching between languages(english/hindi)            
+           lol();
+             //array with all 10 different english sentences
+             engarr = [eng1,eng2,eng3,eng4,eng5,eng6,eng7,eng8,eng9,eng10];
+
            messs();
-            
+            // randomly accessing 1 english sentence among 10 english sentences
+             renglish2 = engarr[Math.floor(Math.random() * engarr.length)];
+
+            //randomly selecting 1 sentence among the correct sentence of same question 
+             renglish = renglish2[Math.floor(Math.random() * renglish2.length)];
+            //console.log(renglish)
+            ranques(renglish);
+            //randomizing words
             
     }
     else if(lan==='hindi')
     {   
 
+                //emptying the string data while switching between languages(english/hindi)
+                lol();
 
+            //array with all 7 different hindi sentences
+                    hinarr = [hin1,hin2,hin3,hin4,hin5,hin6,hin7];
+            
            messs();
-          
+            // randomly accessing 1 hindi sentence among 7 hindi sentences
+                randomHindi = hinarr[Math.floor(Math.random() * hinarr.length)];
+
+            //randomly selecting 1 sentence among the correct sentence of same question 
+                rhindi = randomHindi[Math.floor(Math.random() * randomHindi.length)];
+            //console.log(rhindi)
+            
+            //randomizing words
+            ranques(rhindi);
                 
         }
     else
         {           
-            
-             alert("Please Select A Language.");
+            //document.querySelectorAll("#wrong, #ans, #button-select-intro,#sentence-intro,#msg,#sel,#reformed,#check-correctness,#jumbled-words,#correct").innerHTML="";  
+           set2('msg'); set2('sel'); set2('reformed'); set2('check-correctness'); set2('correct'); set2('wrong'); set2('ans');set2('button-select-intro');set2('sentence-intro');set2('jumbled-words');
+                        alert("Please Select A Language.");
 
         }   
 }
 
-
+function lol()
+    {
+            document.querySelectorAll("#wrong, #ans, #msg,#correct,#check-correctness,#jumbled-words, #reformed, #sel").innerHTML="";
+    }
 function messs(){
             set('sentence-intro','Form a sentence (Declarative or Interrogative or any other type) from the given words');
             document.getElementById("button-select-intro").innerHTML="(select the buttons in proper order)";
             document.getElementById("button-select-intro").setAttribute("style","color:blue;");
             document.getElementById("sentence-intro").setAttribute("style","color:blue;font-size:100%");
             
+    }
+    function ranques(a){
+        var arrwords=a.split(" ");
+            var words=[];
+            var k=0,m=0;
+            while(arrwords.length>k)
+            { m = Math.floor(Math.random() * arrwords.length);
+                if(arrwords[m]!="no"){
+                words[k]=arrwords[m];
+                arrwords[m]="no";
+                k++;
+                }
+            }
+
+            //displaying random buttons
+            var i=0;
+            c=0;
+            wcount = words.length
+            set('jumbled-words','')
+            for(i=0;i<wcount;i++)
+            {
+                document.getElementById("jumbled-words").innerHTML += "<button class='btn' id='btn"+i+"' value='"+words[i]+"' onclick='Bfunction(this.id,this.value);'>"+words[i]+"</button>";  
+            }
+
+
+            //all the jumbled buttons are stored to display them in same random/jumbled order when reform button is clicked.
+             Buttons =document.getElementById("jumbled-words").innerHTML ;
+    }
+    set= function(id, txt){
+        document.getElementById(id).innerHTML=txt;
+    }
+    set2= function(id){
+        document.getElementById(id).innerHTML="";
     }
