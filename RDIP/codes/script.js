@@ -281,3 +281,52 @@ function messs(){
     set2= function(id){
         document.getElementById(id).innerHTML="";
     }
+    var answers="";
+    function check()
+    {
+        var result= selectedSentence.trim();
+        
+        if(lan=='eng')
+        {
+            if (renglish2.includes(result))
+            {
+            set('correct','Correct Answer!!!');
+
+            document.querySelectorAll("#wrong, #ans").innerHTML="";
+            }
+            else{
+                set('wrong','Wrong Answer !!!');
+                set('correct','');
+                document.getElementById("ans").innerHTML="<button id='show' onclick='show(this.id)'>Get Correct Sentence</button>"
+            }
+        }
+        else if(lan=='hindi')
+        {var i=0;
+            result=result.trim();
+            console.log(result)
+            for(i=0;i<hindiALL.length;i++)
+            { var x=hindiALL[i];
+                if(x.localeCompare(result)==0)
+                {
+                    i=100; 
+               //     console.log(i)
+                    break;   
+                }    
+            }
+            
+            if(i==100)
+            {
+                set('correct','Correct Answer!!!')
+                set('wrong','')
+
+            document.querySelectorAll("#wrong, #ans").innerHTML="";
+
+            }
+            else{
+                set('wrong','Wrong Answer!!!')
+                set('correct','')
+                document.getElementById("ans").innerHTML="<button id='getCorrectSentence' onclick='show(this.id)'>Get Correct Sentence</button>"
+
+            }
+        }
+    }
