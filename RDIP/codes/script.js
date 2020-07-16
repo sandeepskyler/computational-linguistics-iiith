@@ -282,6 +282,32 @@ function messs(){
         document.getElementById(id).innerHTML="";
     }
     var answers="";
+    function show(id)
+    {   var i=0;
+        document.getElementById(id).style.display="none";
+        document.getElementById("ans").innerHTML="<button id='hide' onclick='toggle()'>Hide the Correct Sentences</button>"; 
+        //console.log(renglish2)
+        answers="";
+        if(lan=="eng")
+        {var l=renglish2.length;
+            for(i=0;i<l;i++)
+            {  
+                console.log(renglish2[i])
+                document.getElementById("ans").innerHTML+="<p>"+renglish2[i]+"</p><br>";
+                answers+="<p>"+renglish2[i]+"</p><br>";
+            }   
+        }
+        if(lan=="hindi")
+        {var i=0;
+            for(i=0;i<randomHindi.length;i++)
+            {
+                console.log(randomHindi[i])
+                document.getElementById("ans").innerHTML+="<p>"+randomHindi[i]+"</p><br>";
+                answers+="<p>"+randomHindi[i]+"</p><br>";  
+            }
+        }
+
+    }
     function check()
     {
         var result= selectedSentence.trim();
