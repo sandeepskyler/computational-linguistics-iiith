@@ -231,6 +231,50 @@ function messs(){
             //all the jumbled buttons are stored to display them in same random/jumbled order when reform button is clicked.
              Buttons =document.getElementById("jumbled-words").innerHTML ;
     }
+    function reform()
+    {   //reset the content that display
+        document.getElementById("jumbled-words").innerHTML = Buttons;
+        set2('msg'); set2('sel'); set2('reformed'); set2('check-correctness'); set2('correct'); set2('wrong'); set2('ans');
+      c =0;
+
+    }
+    function toggle()
+    {
+        if(document.getElementById("hide").innerHTML=='Hide the Correct Sentences')
+        { 
+                set('ans','')
+            document.getElementById("ans").innerHTML="<button id='hide' onclick='toggle()'>Get Answers</button>";
+        }
+        else
+        {
+            document.getElementById("ans").innerHTML+=answers;
+                            set('hide','Hide the Correct Sentences');
+
+        }
+    }
+    function Bfunction(bid,bvalue)
+        {
+           // console.log(bid,bvalue);
+            document.getElementById("msg").innerHTML="Formed Sentence <span>(after selecting words):</span>";
+            document.getElementById("sel").innerHTML +=bvalue+" ";
+            document.getElementById(bid).style.display="none";
+            document.getElementById("reformed").innerHTML = "<button class='reform' id='reform' onclick='reform()'> Re-form the sentence</button>";
+            c++;
+            //console.log(count)
+    //to print check correctness button and storing all the selected words into a sentence
+            if(wcount==c && wcount>0)
+            {
+                selectedSentence = document.getElementById("sel").innerHTML;
+                document.getElementById("check-correctness").innerHTML="<button id='check' onclick='check()'>Check Correctness of the Sentence</button>";                
+                //console.log(selectedSentence);
+            }
+            else{
+                                set('check-correctness','');
+
+            }
+
+
+        }
     set= function(id, txt){
         document.getElementById(id).innerHTML=txt;
     }
