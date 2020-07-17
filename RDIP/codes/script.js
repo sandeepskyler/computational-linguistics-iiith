@@ -1,3 +1,4 @@
+//initializing all the variables
 var lan;
 var Buttons;
 var wcount=0;
@@ -5,8 +6,11 @@ var c=0;
 var engarr=[];
 var hinarr=[];
 var rhindi;
+var selectedSentence;
+
 var renglish2;
 var randomHindi;
+//initializing the corpus
 var eng1 = ['John ate an apple before afternoon',
                             'before afternoon John ate an apple',
                             'John before afternoon ate an apple'
@@ -44,7 +48,7 @@ var eng1 = ['John ate an apple before afternoon',
                              'I‌ ‌bought‌ ‌a‌ ‌book‌ ‌yesterday‌ ‌that‌ ‌I‌ ‌told‌ ‌her‌',
                              'yesterday‌ ‌I‌ ‌bought‌ ‌a‌ ‌book‌ ‌that‌ ‌I‌ ‌told‌ ‌her‌'];
 
- //all multiple correct hindi sentences with 7 different sentences
+ //assigning all the 7 hindi sentences
                 var hin1 = ['राम‌ ‌और‌ ‌श्याम‌ ‌बाजार‌ ‌गयें‌',
                     'राम‌ ‌और‌ ‌श्याम‌ ‌गयें‌ ‌बाजार‌',
                     'बाजार‌ ‌गयें‌ ‌राम‌ ‌और‌ ‌श्याम‌',
@@ -91,7 +95,7 @@ var eng1 = ['John ate an apple before afternoon',
                     'वहाँ‌ ‌है‌ ‌बड़ी‌ ‌सी‌ ‌एक‌ ‌किताब‌',
                     '‌है‌ ‌वहाँ‌ ‌एक‌ ‌बड़ी‌ ‌सी‌ ‌किताब‌',
                     'है‌ ‌वहाँ‌ ‌बड़ी‌ ‌सी‌ ‌एक‌ ‌किताब‌'];
-//all hindi strings in one array
+//hindi sentnces in  one single array
         var hindiALL=[
                     'राम‌ ‌और‌ ‌श्याम‌ ‌बाजार‌ ‌गयें‌',
                     'राम‌ ‌और‌ ‌श्याम‌ ‌गयें‌ ‌बाजार‌',
@@ -140,63 +144,62 @@ var eng1 = ['John ate an apple before afternoon',
                     '‌है‌ ‌वहाँ‌ ‌एक‌ ‌बड़ी‌ ‌सी‌ ‌किताब‌',
                     'है‌ ‌वहाँ‌ ‌बड़ी‌ ‌सी‌ ‌एक‌ ‌किताब‌'
         ]
+        //onchange selecting the option from the dropdown
 function Language()
 {
 
      lan = document.getElementById("select-lang").value;
 
     if(lan==='eng')
-    {
-            //emptying the fields while switching between languages(english/hindi)            
+    {   
+        //emptying the previous displayed content
            lol();
-             //array with all 10 different english sentences
+           //array containing all english sentences
              engarr = [eng1,eng2,eng3,eng4,eng5,eng6,eng7,eng8,eng9,eng10];
 
            messs();
-            // randomly accessing 1 english sentence among 10 english sentences
+           //print the message as in the virtual labs
              renglish2 = engarr[Math.floor(Math.random() * engarr.length)];
-
-            //randomly selecting 1 sentence among the correct sentence of same question 
+//randomly selecting a sentence from the english array
              renglish = renglish2[Math.floor(Math.random() * renglish2.length)];
-            //console.log(renglish)
+
             ranques(renglish);
-            //randomizing words
-            
+//randomly printing the words of a sentence that is selected           
     }
     else if(lan==='hindi')
     {   
 
-                //emptying the string data while switching between languages(english/hindi)
+        //emptying the previous displayed content
                 lol();
 
-            //array with all 7 different hindi sentences
+           //array containing all hindi sentences
                     hinarr = [hin1,hin2,hin3,hin4,hin5,hin6,hin7];
-            
-           messs();
-            // randomly accessing 1 hindi sentence among 7 hindi sentences
+                       //print the message as in the virtual labs
+                messs();
                 randomHindi = hinarr[Math.floor(Math.random() * hinarr.length)];
 
-            //randomly selecting 1 sentence among the correct sentence of same question 
-                rhindi = randomHindi[Math.floor(Math.random() * randomHindi.length)];
-            //console.log(rhindi)
-            
-            //randomizing words
+//randomly selecting a sentence from the hindi sentence array
+                rhindi = randomHindi[Math.floor(Math.random() * randomHindi.length)];            
+//randomly printing the words of a sentence that is selected           
             ranques(rhindi);
                 
         }
     else
         {           
+            //emptying the content that dispalyed previously and alert user to select a language
             //document.querySelectorAll("#wrong, #ans, #button-select-intro,#sentence-intro,#msg,#sel,#reformed,#check-correctness,#jumbled-words,#correct").innerHTML="";  
            set2('msg'); set2('sel'); set2('reformed'); set2('check-correctness'); set2('correct'); set2('wrong'); set2('ans');set2('button-select-intro');set2('sentence-intro');set2('jumbled-words');
                         alert("Please Select A Language.");
 
         }   
 }
-
+//emptying the last displayed content
 function lol()
     {
             document.querySelectorAll("#wrong, #ans, #msg,#correct,#check-correctness,#jumbled-words, #reformed, #sel").innerHTML="";
     }
+               //print the message as in the virtual labs
+
 function messs(){
             set('sentence-intro','Form a sentence (Declarative or Interrogative or any other type) from the given words');
             document.getElementById("button-select-intro").innerHTML="(select the buttons in proper order)";
@@ -204,6 +207,7 @@ function messs(){
             document.getElementById("sentence-intro").setAttribute("style","color:blue;font-size:100%");
             
     }
+    //random selection of a sentence from the selected array  
     function ranques(a){
         var arrwords=a.split(" ");
             var words=[];
@@ -217,7 +221,7 @@ function messs(){
                 }
             }
 
-            //displaying random buttons
+            //displaying the words that are randomly choosen as  buttons
             var i=0;
             c=0;
             wcount = words.length
@@ -226,18 +230,17 @@ function messs(){
             {
                 document.getElementById("jumbled-words").innerHTML += "<button class='btn' id='btn"+i+"' value='"+words[i]+"' onclick='Bfunction(this.id,this.value);'>"+words[i]+"</button>";  
             }
-
-
-            //all the jumbled buttons are stored to display them in same random/jumbled order when reform button is clicked.
              Buttons =document.getElementById("jumbled-words").innerHTML ;
     }
+    //reset the content on changing the language
     function reform()
-    {   //reset the content that display
+    {   
         document.getElementById("jumbled-words").innerHTML = Buttons;
         set2('msg'); set2('sel'); set2('reformed'); set2('check-correctness'); set2('correct'); set2('wrong'); set2('ans');
       c =0;
 
     }
+    //to hidde the content of the answer
     function toggle()
     {
         if(document.getElementById("hide").innerHTML=='Hide the Correct Sentences')
@@ -252,21 +255,19 @@ function messs(){
 
         }
     }
+    //to print the selected button and store them
+
     function Bfunction(bid,bvalue)
         {
-           // console.log(bid,bvalue);
             document.getElementById("msg").innerHTML="Formed Sentence <span>(after selecting words):</span>";
             document.getElementById("sel").innerHTML +=bvalue+" ";
             document.getElementById(bid).style.display="none";
             document.getElementById("reformed").innerHTML = "<button class='reform' id='reform' onclick='reform()'> Re-form the sentence</button>";
             c++;
-            //console.log(count)
-    //to print check correctness button and storing all the selected words into a sentence
             if(wcount==c && wcount>0)
             {
                 selectedSentence = document.getElementById("sel").innerHTML;
                 document.getElementById("check-correctness").innerHTML="<button id='check' onclick='check()'>Check Correctness of the Sentence</button>";                
-                //console.log(selectedSentence);
             }
             else{
                                 set('check-correctness','');
@@ -275,12 +276,14 @@ function messs(){
 
 
         }
+        //assigngning the text content by the element id
     set= function(id, txt){
         document.getElementById(id).innerHTML=txt;
-    }
+    }        //assigngning the null content by the element id
     set2= function(id){
         document.getElementById(id).innerHTML="";
     }
+    //to print the answer for the jumbled sentence
     var answers="";
     function show(id)
     {   var i=0;
@@ -308,6 +311,7 @@ function messs(){
         }
 
     }
+    //to verify the user input with the answer
     function check()
     {
         var result= selectedSentence.trim();
@@ -335,7 +339,6 @@ function messs(){
                 if(x.localeCompare(result)==0)
                 {
                     i=100; 
-               //     console.log(i)
                     break;   
                 }    
             }
