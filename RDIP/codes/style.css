@@ -121,6 +121,12 @@ p {
        font-weight: 599;
 
  }
+ #ans{
+     font-size: 50%;
+     color:rgb(66, 62, 62);   
+       font-weight: 10;
+
+ }
  
  span{
      font-weight: 199;

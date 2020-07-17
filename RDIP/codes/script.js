@@ -200,7 +200,7 @@ function lol()
 function messs(){
             set('sentence-intro','Form a sentence (Declarative or Interrogative or any other type) from the given words');
             document.getElementById("button-select-intro").innerHTML="(select the buttons in proper order)";
-            document.getElementById("button-select-intro").setAttribute("style","color:blue;");
+            document.getElementById("button-select-intro").setAttribute("style","color:blue;font-style:italic");
             document.getElementById("sentence-intro").setAttribute("style","color:blue;font-size:100%");
             
     }
