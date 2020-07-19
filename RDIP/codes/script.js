@@ -6,7 +6,7 @@ var c=0;
 var engarr=[];
 var hinarr=[];
 var rhindi;
-var selectedSentence;
+var selectsen;
 
 var renglish2;
 var randomHindi;
@@ -203,32 +203,32 @@ function lol()
 function messs(){
             set('sentence-intro','Form a sentence (Declarative or Interrogative or any other type) from the given words');
             document.getElementById("button-select-intro").innerHTML="(select the buttons in proper order)";
-            document.getElementById("button-select-intro").setAttribute("style","color:blue;font-style:italic");
-            document.getElementById("sentence-intro").setAttribute("style","color:blue;font-size:100%");
+            // document.getElementById("button-select-intro").setAttribute("style","color:blue;font-style:italic;vertical-align:center");
+            document.getElementById("sentence-intro").setAttribute("style","font-size:16px");
             
     }
     //random selection of a sentence from the selected array  
     function ranques(a){
         var arrwords=a.split(" ");
-            var words=[];
-            var k=0,m=0;
-            while(arrwords.length>k)
-            { m = Math.floor(Math.random() * arrwords.length);
-                if(arrwords[m]!="no"){
-                words[k]=arrwords[m];
-                arrwords[m]="no";
-                k++;
+            var word=[];
+            var d=0,r=0;
+            while(arrwords.length>d)
+            { r = Math.floor(Math.random() * arrwords.length);
+                if(arrwords[r]!="no"){
+                word[d]=arrwords[r];
+                arrwords[r]="no";
+                d++;
                 }
             }
 
             //displaying the words that are randomly choosen as  buttons
             var i=0;
             c=0;
-            wcount = words.length
+            wcount = word.length
             set('jumbled-words','')
             for(i=0;i<wcount;i++)
             {
-                document.getElementById("jumbled-words").innerHTML += "<button class='btn' id='btn"+i+"' value='"+words[i]+"' onclick='Bfunction(this.id,this.value);'>"+words[i]+"</button>";  
+                document.getElementById("jumbled-words").innerHTML += "<button class='btn' id='btn"+i+"' value='"+word[i]+"' onclick='butt(this.id,this.value);'>"+word[i]+"</button>";  
             }
              Buttons =document.getElementById("jumbled-words").innerHTML ;
     }
@@ -241,12 +241,12 @@ function messs(){
 
     }
     //to hidde the content of the answer
-    function toggle()
+    function tog()
     {
         if(document.getElementById("hide").innerHTML=='Hide the Correct Sentences')
         { 
                 set('ans','')
-            document.getElementById("ans").innerHTML="<button id='hide' onclick='toggle()'>Get Answers</button>";
+            document.getElementById("ans").innerHTML="<button id='hide' onclick='tog()'>Get Answers</button>";
         }
         else
         {
@@ -257,16 +257,16 @@ function messs(){
     }
     //to print the selected button and store them
 
-    function Bfunction(bid,bvalue)
+    function butt(buttid,val)
         {
             document.getElementById("msg").innerHTML="Formed Sentence <span>(after selecting words):</span>";
-            document.getElementById("sel").innerHTML +=bvalue+" ";
-            document.getElementById(bid).style.display="none";
+            document.getElementById("sel").innerHTML +=val+" ";
+            document.getElementById(buttid).style.display="none";
             document.getElementById("reformed").innerHTML = "<button class='reform' id='reform' onclick='reform()'> Re-form the sentence</button>";
             c++;
             if(wcount==c && wcount>0)
             {
-                selectedSentence = document.getElementById("sel").innerHTML;
+                selectsen = document.getElementById("sel").innerHTML;
                 document.getElementById("check-correctness").innerHTML="<button id='check' onclick='check()'>Check Correctness of the Sentence</button>";                
             }
             else{
@@ -285,28 +285,26 @@ function messs(){
     }
     //to print the answer for the jumbled sentence
     var answers="";
-    function show(id)
+    function look(id)
     {   var i=0;
         document.getElementById(id).style.display="none";
-        document.getElementById("ans").innerHTML="<button id='hide' onclick='toggle()'>Hide the Correct Sentences</button>"; 
-        //console.log(renglish2)
+        document.getElementById("ans").innerHTML="<button id='hide' onclick='tog()'>Hide the Correct Sentences</button>"; 
         answers="";
         if(lan=="eng")
-        {var l=renglish2.length;
+        {
+            var l=renglish2.length;
             for(i=0;i<l;i++)
             {  
-                console.log(renglish2[i])
-                document.getElementById("ans").innerHTML+="<p>"+renglish2[i]+"</p><br>";
-                answers+="<p>"+renglish2[i]+"</p><br>";
+                document.getElementById("ans").innerHTML+="<p>"+renglish2[i]+"</p>";
+                answers+="<p>"+renglish2[i]+"</p>";
             }   
         }
         if(lan=="hindi")
         {var i=0;
             for(i=0;i<randomHindi.length;i++)
             {
-                console.log(randomHindi[i])
-                document.getElementById("ans").innerHTML+="<p>"+randomHindi[i]+"</p><br>";
-                answers+="<p>"+randomHindi[i]+"</p><br>";  
+                document.getElementById("ans").innerHTML+="<p>"+randomHindi[i]+"</p>";
+                answers+="<p>"+randomHindi[i]+"</p>";  
             }
         }
 
@@ -314,11 +312,11 @@ function messs(){
     //to verify the user input with the answer
     function check()
     {
-        var result= selectedSentence.trim();
+        var res= selectsen.trim();
         
         if(lan=='eng')
         {
-            if (renglish2.includes(result))
+            if (renglish2.includes(res))
             {
             set('correct','Correct Answer!!!');
 
@@ -327,23 +325,22 @@ function messs(){
             else{
                 set('wrong','Wrong Answer !!!');
                 set('correct','');
-                document.getElementById("ans").innerHTML="<button id='show' onclick='show(this.id)'>Get Correct Sentence</button>"
+                document.getElementById("ans").innerHTML="<button id='look' onclick='look(this.id)'>Get Correct Sentence</button>"
             }
         }
         else if(lan=='hindi')
         {var i=0;
-            result=result.trim();
-            console.log(result)
+            res=res.trim();
             for(i=0;i<hindiALL.length;i++)
             { var x=hindiALL[i];
-                if(x.localeCompare(result)==0)
+                if(x.localeCompare(res)==0)
                 {
-                    i=100; 
+                    i=99; 
                     break;   
                 }    
             }
             
-            if(i==100)
+            if(i==99)
             {
                 set('correct','Correct Answer!!!')
                 set('wrong','')
@@ -354,7 +351,7 @@ function messs(){
             else{
                 set('wrong','Wrong Answer!!!')
                 set('correct','')
-                document.getElementById("ans").innerHTML="<button id='getCorrectSentence' onclick='show(this.id)'>Get Correct Sentence</button>"
+                document.getElementById("ans").innerHTML="<button id='getCorrectSentence' onclick='look(this.id)'>Get Correct Sentence</button>"
 
             }
         }

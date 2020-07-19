@@ -1,10 +1,13 @@
 html{
     height: 100%;
 }
+h1 {
+    text-align: left;
+}
 
 
 p {
-    font-size: 39px;
+    font-size: 75%;
 }
 .content{
     margin: -1% 18% 0% 15.4%;
@@ -16,8 +19,9 @@ p {
  #msg{
      margin-top: 3%;
      text-align: center;
-     color:rgb(41, 41, 194);
+     color:#0000AA;
      font-weight: 599;
+     font-size:100%;
  }
 .content a{
      font-size: 100%;
@@ -70,7 +74,7 @@ p {
      position: fixed;  
      right:18.1%;
      left:17.2%;
-     height: 549px;
+     height: 100%;
      overflow: scroll;
      overflow-x: hidden;
      margin: 0% -0.4%; 
@@ -97,7 +101,7 @@ p {
     color: white;
  }
  .content-body p{
-    color:black;
+    color:#444;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 119%;
  }
@@ -113,18 +117,17 @@ p {
  
  #jumbled-words,#sel,#reformed,#check-correctness,#ans{
      text-align: center;
+    
      margin-top: 4%;
+ }
+ #ans{
+    font-size: 150%;
+    color:#444;
  }
  #sel{
      font-size: 199%;
      color:rgb(66, 62, 62);   
        font-weight: 599;
-
- }
- #ans{
-     font-size: 50%;
-     color:rgb(66, 62, 62);   
-       font-weight: 10;
 
  }
  
